@@ -34,13 +34,29 @@ def apply_background(bg_type, current_game=None):
 # 2. MASTER DATA
 MASTER_DATA = {
     "Smash 64 (Stock)": ["64: Mario Bros", "64: Hyrule & Dreamland", "64: Sector Z & Kanto"],
-    "Smash Remix": ["Remix: New Challengers 1", "Remix: New Challengers 2", "Remix: Bosses/Bonus"],
+    "Smash Remix": [
+        "Remix: New Challengers 1", 
+        "Remix: New Challengers 2", 
+        "Remix: Guest Legends", 
+        "Remix: Bosses/Bonus"
+    ],
     "Melee": ["Melee: High Tiers", "Melee: Mid Tiers", "Melee: Low Tiers"],
-    "Melee Beyond": ["Beyond: Modded Wave 1", "Beyond: Modded Wave 2", "Beyond: Final Expansion"],
-    "Project+": ["P+: Star Fox & Zelda", "P+: Retro & Pokemon", "P+: The Rivals"],
+    "Melee Beyond": [
+        "Beyond: Modded Wave 1", 
+        "Beyond: Modded Wave 2", 
+        "Beyond: Modded Wave 3", 
+        "Beyond: Final Expansion"
+    ],
+    "Project+": [
+        "P+: Star Fox & Zelda", 
+        "P+: Retro & Pokemon", 
+        "P+: The Rivals",
+        "P+: Heavyweights", 
+        "P+: Newcomer Finale" # Total of 5 lines
+    ],
     "Brawl": ["Brawl: Meta Knight Era", "Brawl: Subspace Legends", "Brawl: Final Smash"],
     "Smash 4": ["S4: 3rd Party DLC", "S4: Nintendo All-Stars", "S4: Final Slots"],
-    "Ultimate": ["ULT: #01-#20", "ULT: #21-#40", "ULT: #41-#60", "ULT: #61-#80", "ULT: DLC Finale"]
+    "Ultimate": ["ULT: #01-#20", "ULT: #21-#40", "ULT: #41-#50", "ULT: #51-#70", "ULT: DLC Finale"]
 }
 
 # 3. SESSION STATE
@@ -214,3 +230,4 @@ else:
 
 if st.session_state.history:
     with st.expander("📊 Full Match History"): st.table(pd.DataFrame(st.session_state.history))
+
