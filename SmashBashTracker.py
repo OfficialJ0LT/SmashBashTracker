@@ -12,9 +12,9 @@ def apply_background(bg_type, current_game=None):
         "Smash 64 (Stock)": "https://wallpaperaccess.com/full/1164817.jpg",
         "Smash Remix": "https://cdn.discordapp.com/attachments/1452593220780294244/1452599486093463665/64.jpg?ex=694a6631&is=694914b1&hm=dd2d9aec7e95dc1d650023aff9ac8bebed03e2f56fab69695ae63304b1c6315e&",
         "Melee": "https://cdn.discordapp.com/attachments/1452593220780294244/1452594303984730264/melee.webp?ex=694a615d&is=69490fdd&hm=f41b1641021dd047bc31fedcd5462dbacb199869469f9cbc82c79979973aae70&", 
-        "Melee Beyond": "https://images.alphacoders.com/132/1327178.png",
+        "Melee Beyond": "insert link",
         "Project+": "https://cdn.discordapp.com/attachments/1452593220780294244/1452602519489613904/p.jpg?ex=694a6904&is=69491784&hm=f2bb905e72cb0c7c439d565bad5d21567a1bf229d762da17cfe75ac31ab271fc&",
-        "Brawl": "https://images6.alphacoders.com/640/640984.jpg",
+        "Brawl": "Instert link",
         "Smash 4": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596054854860850/wii_u.webp?ex=694a62ff&is=6949117f&hm=dd93e44659c848b03445c2ba9995b0bfada3081685de7da954a9343d754a0640&",
         "Ultimate": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596756713046126/ultimate.webp?ex=694a63a6&is=69491226&hm=64f91e457dd6bf117a8279a11a784445ea47f452d9b56909aa890213ed9be0b5&",
         "Complete!": "https://cdn.discordapp.com/attachments/1452593220780294244/1452597354157838376/win.webp?ex=694a6435&is=694912b5&hm=d7f9f512510a2ff43d37e636dd17e85ce7d2e29818baddd151ec67d292e80209&"
@@ -38,9 +38,9 @@ MASTER_DATA = {
         "Remix: New Challengers 1", 
         "Remix: New Challengers 2", 
         "Remix: Guest Legends", 
-        "Remix: Bosses/Bonus"
+        "Remix: Left side bonus line"
     ],
-    "Melee": ["Melee: High Tiers", "Melee: Mid Tiers", "Melee: Low Tiers"],
+    "Melee": ["Melee: Mario Bros", "Melee: Starfox and Zelda", "Melee: Pokemon and sword dudes"],
     "Melee Beyond": [
         "Beyond: Modded Wave 1", 
         "Beyond: Modded Wave 2", 
@@ -48,15 +48,15 @@ MASTER_DATA = {
         "Beyond: Final Expansion"
     ],
     "Project+": [
+        "P+: Mario Bros", 
         "P+: Star Fox & Zelda", 
-        "P+: Retro & Pokemon", 
-        "P+: The Rivals",
-        "P+: Heavyweights", 
+        "P+: Pokemon",
+        "P+: Floaters and sword pricks", 
         "P+: Newcomer Finale" # Total of 5 lines
     ],
-    "Brawl": ["Brawl: Meta Knight Era", "Brawl: Subspace Legends", "Brawl: Final Smash"],
-    "Smash 4": ["S4: 3rd Party DLC", "S4: Nintendo All-Stars", "S4: Final Slots"],
-    "Ultimate": ["ULT: #01-#20", "ULT: #21-#40", "ULT: #41-#50", "ULT: #51-#70", "ULT: DLC Finale"]
+    "Brawl": ["Brawl: Classics", "Brawl: Luigi - Snake", "Brawl: Peach - Sonic", "Brawl: Final Smash"],
+    "Smash 4": ["S4: Mario - Little mac", "S4: Link - Robin", "S4: Duck Hunt - Greninja","S4: Nintendo All-Stars", "S4: Friends"],
+    "Ultimate": ["ULT: Mario - JigglyPuff, "ULT: Peach - Ganandorf, "Mewtwo - Diddykong", "ULT: Lucas - Little Mac", "ULT: Greninja - Inkling", "ULT: Ridley - Min Min", "ULT: DLC Finale"]
 }
 
 # 3. SESSION STATE
@@ -230,4 +230,5 @@ else:
 
 if st.session_state.history:
     with st.expander("📊 Full Match History"): st.table(pd.DataFrame(st.session_state.history))
+
 
