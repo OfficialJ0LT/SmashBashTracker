@@ -1,0 +1,4 @@
+right click this folder - open in terminal 
+
+streamlit run .\SmashBashTracker.py
+
