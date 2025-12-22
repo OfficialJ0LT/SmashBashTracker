@@ -56,7 +56,7 @@ MASTER_DATA = {
     ],
     "Brawl": ["Brawl: Classics", "Brawl: Luigi - Snake", "Brawl: Peach - Sonic", "Brawl: Final Smash"],
     "Smash 4": ["S4: Mario - Little mac", "S4: Link - Robin", "S4: Duck Hunt - Greninja","S4: Nintendo All-Stars", "S4: Friends"],
-    "Ultimate": ["ULT: Mario - JigglyPuff, "ULT: Peach - Ganandorf, "Mewtwo - Diddykong", "ULT: Lucas - Little Mac", "ULT: Greninja - Inkling", "ULT: Ridley - Min Min", "ULT: DLC Finale"],
+    "Ultimate": ["ULT: Mario - JigglyPuff, "ULT: Peach - Ganandorf", "Mewtwo - Diddykong", "ULT: Lucas - Little Mac", "ULT: Greninja - Inkling", "ULT: Ridley - Min Min", "ULT: DLC Finale"],
 }
 
 # 3. SESSION STATE
@@ -230,6 +230,7 @@ else:
 
 if st.session_state.history:
     with st.expander("📊 Full Match History"): st.table(pd.DataFrame(st.session_state.history))
+
 
 
 
