@@ -3,15 +3,18 @@ import pandas as pd
 import base64
 import json
 
-# 1. SETTINGS & CONFIG (MUST BE FIRST)
+# 1. SETTINGS & CONFIG
 st.set_page_config(page_title="Smash Iron Man: Grand Tour", layout="wide")
 
 # --- BACKGROUND ENGINE ---
 def apply_background(bg_type, current_game=None):
     era_bgs = {
+        "Smash 64 (Stock)": "https://wallpaperaccess.com/full/1164817.jpg",
         "Smash Remix": "https://cdn.discordapp.com/attachments/1452593220780294244/1452599486093463665/64.jpg?ex=694a6631&is=694914b1&hm=dd2d9aec7e95dc1d650023aff9ac8bebed03e2f56fab69695ae63304b1c6315e&",
         "Melee": "https://cdn.discordapp.com/attachments/1452593220780294244/1452594303984730264/melee.webp?ex=694a615d&is=69490fdd&hm=f41b1641021dd047bc31fedcd5462dbacb199869469f9cbc82c79979973aae70&", 
+        "Melee Beyond": "https://images.alphacoders.com/132/1327178.png",
         "Project+": "https://cdn.discordapp.com/attachments/1452593220780294244/1452602519489613904/p.jpg?ex=694a6904&is=69491784&hm=f2bb905e72cb0c7c439d565bad5d21567a1bf229d762da17cfe75ac31ab271fc&",
+        "Brawl": "https://images6.alphacoders.com/640/640984.jpg",
         "Smash 4": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596054854860850/wii_u.webp?ex=694a62ff&is=6949117f&hm=dd93e44659c848b03445c2ba9995b0bfada3081685de7da954a9343d754a0640&",
         "Ultimate": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596756713046126/ultimate.webp?ex=694a63a6&is=69491226&hm=64f91e457dd6bf117a8279a11a784445ea47f452d9b56909aa890213ed9be0b5&",
         "Complete!": "https://cdn.discordapp.com/attachments/1452593220780294244/1452597354157838376/win.webp?ex=694a6435&is=694912b5&hm=d7f9f512510a2ff43d37e636dd17e85ce7d2e29818baddd151ec67d292e80209&"
@@ -30,11 +33,14 @@ def apply_background(bg_type, current_game=None):
 
 # 2. MASTER DATA
 MASTER_DATA = {
-    "Smash Remix": ["64: The OG 12", "64: Melee Era", "64: Brawl/Ult Era", "64: The Guests", "64: The Oddballs"],
-    "Melee": ["Melee: Line 1", "Melee: Line 2", "Melee: Line 3", "Melee: Line 4", "Melee: Line 5"],
-    "Project+": ["P+: The Heavies", "P+: Star Fox & Zelda", "P+: Retro & Pokemon", "P+: The Rivals"],
-    "Smash 4": ["S4: Mushroom Kingdom", "S4: Hyrule & Icarus", "S4: Dream Land & Poke", "S4: 3rd Party", "S4: DLC Wave", "S4: Final Slots"],
-    "Ultimate": ["ULT: #01-#10", "ULT: #11-#20", "ULT: #21-#30", "ULT: #31-#40", "ULT: #41-#50", "ULT: #51-#60", "ULT: #61-#70", "ULT: #71-#80", "ULT: Final DLC/Mods"]
+    "Smash 64 (Stock)": ["64: Mario Bros", "64: Hyrule & Dreamland", "64: Sector Z & Kanto"],
+    "Smash Remix": ["Remix: New Challengers 1", "Remix: New Challengers 2", "Remix: Bosses/Bonus"],
+    "Melee": ["Melee: High Tiers", "Melee: Mid Tiers", "Melee: Low Tiers"],
+    "Melee Beyond": ["Beyond: Modded Wave 1", "Beyond: Modded Wave 2", "Beyond: Final Expansion"],
+    "Project+": ["P+: Star Fox & Zelda", "P+: Retro & Pokemon", "P+: The Rivals"],
+    "Brawl": ["Brawl: Meta Knight Era", "Brawl: Subspace Legends", "Brawl: Final Smash"],
+    "Smash 4": ["S4: 3rd Party DLC", "S4: Nintendo All-Stars", "S4: Final Slots"],
+    "Ultimate": ["ULT: #01-#20", "ULT: #21-#40", "ULT: #41-#60", "ULT: #61-#80", "ULT: DLC Finale"]
 }
 
 # 3. SESSION STATE
@@ -48,16 +54,15 @@ if 'initialized' not in st.session_state:
     st.session_state.history = []
     st.session_state.initialized = True
 
-# Safety sync for game names
+# Safety sync
 st.session_state.selected_games = [g for g in st.session_state.selected_games if g in MASTER_DATA]
 
-# Build Active Lines
 active_game_data = {k: MASTER_DATA[k] for k in st.session_state.selected_games}
 all_lines = [line for lines in active_game_data.values() for line in lines]
 curr_idx = st.session_state.current_line_idx
 marathon_finished = curr_idx >= len(all_lines) if all_lines else False
 
-# Logic to find current game info
+# Logic for current game
 current_game = "Complete!"
 game_lines, game_line_num, next_game = [], 0, "THE END"
 if not marathon_finished and all_lines:
@@ -70,7 +75,7 @@ if not marathon_finished and all_lines:
             break
         temp_count += len(lines)
 
-# 4. SIDEBAR (UI)
+# 4. SIDEBAR
 with st.sidebar:
     st.header("📂 Restore Progress")
     uploaded_file = st.file_uploader("Upload .json backup", type="json")
@@ -95,7 +100,6 @@ with st.sidebar:
             st.session_state.scores[new_n] = st.session_state.scores.pop(old_n, 0)
             st.session_state.player_names[i] = new_n; st.rerun()
 
-    # --- SAVE BUTTON (Safe Position) ---
     st.divider()
     st.header("💾 Save Progress")
     save_blob = {k: st.session_state[k] for k in ["current_line_idx", "player_names", "scores", "era_wins", "history", "selected_games"]}
@@ -109,7 +113,7 @@ with st.sidebar:
         else: st.write(f"{era}: {champ}")
 
     st.divider()
-    if st.button("Full Reset", type="secondary", help="Danger: This clears all current progress!"):
+    if st.button("Full Reset", type="secondary"):
         st.session_state.clear(); st.rerun()
 
 # 5. MAIN UI
@@ -143,35 +147,54 @@ elif not marathon_finished:
             if st.button(f"DONE: {name}", disabled=(name in st.session_state.finished_this_line or skip_mode), key=f"btn_{i}", use_container_width=True):
                 st.session_state.finished_this_line.append(name); st.rerun()
 
-    if skip_mode:
-        if st.button("🚀 CONFIRM & ADVANCE", type="primary", use_container_width=True):
-            pts = [4, 3, 2, 0]
-            results = {"Line": all_lines[curr_idx]}
-            for i, p in enumerate(st.session_state.finished_this_line):
-                st.session_state.scores[p] += pts[i]; results[p] = pts[i]
-            skipper = list(set(st.session_state.player_names) - set(st.session_state.finished_this_line))[0]
-            results[skipper] = 0; st.session_state.history.append(results)
-            
-            if game_line_num == len(game_lines):
-                era_scores = {n: sum(r.get(n, 0) for r in st.session_state.history if r["Line"] in game_lines) for n in st.session_state.player_names}
-                st.session_state.era_wins[current_game] = max(era_scores, key=era_scores.get)
-            
-            st.session_state.current_line_idx += 1; st.session_state.finished_this_line = []; st.rerun()
+    # --- ADVANCE & UNDO BAR ---
+    st.divider()
+    ctrl_c1, ctrl_c2 = st.columns([3, 1])
+    
+    with ctrl_c1:
+        if skip_mode:
+            if st.button("🚀 CONFIRM & ADVANCE", type="primary", use_container_width=True):
+                pts = [4, 3, 2, 0]
+                results = {"Line": all_lines[curr_idx]}
+                for i, p in enumerate(st.session_state.finished_this_line):
+                    st.session_state.scores[p] += pts[i]; results[p] = pts[i]
+                skipper = list(set(st.session_state.player_names) - set(st.session_state.finished_this_line))[0]
+                results[skipper] = 0; st.session_state.history.append(results)
+                
+                if game_line_num == len(game_lines):
+                    era_scores = {n: sum(r.get(n, 0) for r in st.session_state.history if r["Line"] in game_lines) for n in st.session_state.player_names}
+                    st.session_state.era_wins[current_game] = max(era_scores, key=era_scores.get)
+                
+                st.session_state.current_line_idx += 1; st.session_state.finished_this_line = []; st.rerun()
+        else:
+            st.button("Confirm & Advance", disabled=True, use_container_width=True, help="Finish 3 players to advance")
+
+    with ctrl_c2:
+        if st.session_state.current_line_idx > 0:
+            if st.button("↩️ UNDO", use_container_width=True, help="Go back one line and revert points"):
+                # 1. Get last result
+                last_res = st.session_state.history.pop()
+                # 2. Subtract points
+                for name in st.session_state.player_names:
+                    st.session_state.scores[name] -= last_res.get(name, 0)
+                # 3. Handle Era Win Reversion
+                prev_line = last_res["Line"]
+                for era, lines in MASTER_DATA.items():
+                    if prev_line in lines and lines[-1] == prev_line:
+                        st.session_state.era_wins[era] = "TBD"
+                # 4. Decrement index
+                st.session_state.current_line_idx -= 1
+                st.session_state.finished_this_line = []
+                st.rerun()
 
 else:
-    # --- GRAND FINALE & HALL OF FAME ---
+    # --- GRAND FINALE ---
     st.balloons(); st.snow()
     final_scores = sorted(st.session_state.scores.items(), key=lambda x: x[1], reverse=True)
     winner_name = final_scores[0][0]
+    st.markdown(f'<div style="text-align: center; border: 10px solid gold; padding: 20px;"><h1>🏆 CHAMPION: {winner_name}</h1></div>', unsafe_allow_html=True)
     
-    st.markdown(f"""
-        <div style="text-align: center; padding: 30px; border: 10px solid gold; border-radius: 20px; background-color: rgba(255, 215, 0, 0.15); margin-bottom: 40px;">
-            <h1 style="color: gold; font-size: 70px;">🏆 GRAND CHAMPION 🏆</h1>
-            <h2 style="font-size: 90px; margin: 0;">{winner_name}</h2>
-            <p style="font-size: 28px;">Victory with {st.session_state.scores[winner_name]} total points!</p>
-        </div>
-    """, unsafe_allow_html=True)
-    
+    # Hall of Fame Row
     st.subheader("🏛️ Hall of Fame (Era Trophies)")
     fame_cols = st.columns(4)
     for i, name in enumerate(st.session_state.player_names):
@@ -179,10 +202,15 @@ else:
         fame_cols[i].metric(label=name, value=f"{count} Trophies", delta="🏆" * count if count > 0 else None)
 
     st.divider()
-    st.subheader("🥇 Final Marathon Standings")
-    leaderboard_cols = st.columns(4)
+    st.subheader("🥇 Final Standings")
+    l_cols = st.columns(4)
     for idx, (player, score) in enumerate(final_scores):
-        leaderboard_cols[idx].metric(label=f"Rank #{idx+1}", value=player, delta=f"{score} Total Pts")
+        l_cols[idx].metric(label=f"Rank #{idx+1}", value=player, delta=f"{score} Total Pts")
+    
+    if st.button("↩️ Undo Last Line", use_container_width=True):
+        last_res = st.session_state.history.pop()
+        for name in st.session_state.player_names: st.session_state.scores[name] -= last_res.get(name, 0)
+        st.session_state.current_line_idx -= 1; st.rerun()
 
 if st.session_state.history:
     with st.expander("📊 Full Match History"): st.table(pd.DataFrame(st.session_state.history))
