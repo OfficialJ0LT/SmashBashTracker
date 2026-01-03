@@ -41,6 +41,11 @@ MASTER_DATA = {
         "Remix: Left side bonus line"
     ],
     "Melee": ["Melee: Mario Bros", "Melee: Starfox and Zelda", "Melee: Pokemon and sword dudes"],
+    "Melee Akaneia": [
+        "Akaneia: Mario & Diddy", 
+        "Akaneia: Wolf & Deedee", 
+        "Akaneia: Sonic, Tails & charizard"
+    ],
     "Melee Beyond": [
         "Beyond: Modded Wave 1", 
         "Beyond: Modded Wave 2", 
