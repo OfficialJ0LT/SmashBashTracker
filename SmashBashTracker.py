@@ -9,7 +9,7 @@ st.set_page_config(page_title="Smash Iron Man: Grand Tour", layout="wide")
 # --- BACKGROUND ENGINE ---
 def apply_background(bg_type, current_game=None):
     era_bgs = {
-        "Smash 64 (Stock)": "https://i.postimg.cc/c4RZJvtW/box-art-nintendo-all-star-dairantou-smash-brothers-portada-japon-nintendo-64.jpg",
+        "Smash 64": "https://i.postimg.cc/c4RZJvtW/box-art-nintendo-all-star-dairantou-smash-brothers-portada-japon-nintendo-64.jpg",
         "Smash Remix": "https://i.postimg.cc/vBhHDDN0/64.webp",
         "Melee": "https://postimg.cc/6TYmvxNS", 
         "Melee Beyond": "https://postimg.cc/DmjxzQqt",
@@ -33,7 +33,7 @@ def apply_background(bg_type, current_game=None):
 
 # 2. MASTER DATA
 MASTER_DATA = {
-    "Smash 64 (Stock)": ["64: Mario Bros", "64: Hyrule & Dreamland", "64: Sector Z & Kanto"],
+    "Smash 64": ["64: Mario Bros", "64: Hyrule & Dreamland", "64: Sector Z & Kanto"],
     "Smash Remix": [
         "Remix: New Challengers 1", 
         "Remix: New Challengers 2", 
