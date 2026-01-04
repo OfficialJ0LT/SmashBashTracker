@@ -9,15 +9,15 @@ st.set_page_config(page_title="Smash Iron Man: Grand Tour", layout="wide")
 # --- BACKGROUND ENGINE ---
 def apply_background(bg_type, current_game=None):
     era_bgs = {
-        "Smash 64 (Stock)": "https://wallpaperaccess.com/full/1164817.jpg",
-        "Smash Remix": "https://cdn.discordapp.com/attachments/1452593220780294244/1452599486093463665/64.jpg?ex=694a6631&is=694914b1&hm=dd2d9aec7e95dc1d650023aff9ac8bebed03e2f56fab69695ae63304b1c6315e&",
-        "Melee": "https://cdn.discordapp.com/attachments/1452593220780294244/1452594303984730264/melee.webp?ex=694a615d&is=69490fdd&hm=f41b1641021dd047bc31fedcd5462dbacb199869469f9cbc82c79979973aae70&", 
-        "Melee Beyond": "insert link",
-        "Project+": "https://cdn.discordapp.com/attachments/1452593220780294244/1452602519489613904/p.jpg?ex=694a6904&is=69491784&hm=f2bb905e72cb0c7c439d565bad5d21567a1bf229d762da17cfe75ac31ab271fc&",
-        "Brawl": "Instert link",
-        "Smash 4": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596054854860850/wii_u.webp?ex=694a62ff&is=6949117f&hm=dd93e44659c848b03445c2ba9995b0bfada3081685de7da954a9343d754a0640&",
-        "Ultimate": "https://cdn.discordapp.com/attachments/1452593220780294244/1452596756713046126/ultimate.webp?ex=694a63a6&is=69491226&hm=64f91e457dd6bf117a8279a11a784445ea47f452d9b56909aa890213ed9be0b5&",
-        "Complete!": "https://cdn.discordapp.com/attachments/1452593220780294244/1452597354157838376/win.webp?ex=694a6435&is=694912b5&hm=d7f9f512510a2ff43d37e636dd17e85ce7d2e29818baddd151ec67d292e80209&"
+        "Smash 64 (Stock)": "https://i.postimg.cc/c4RZJvtW/box-art-nintendo-all-star-dairantou-smash-brothers-portada-japon-nintendo-64.jpg",
+        "Smash Remix": "https://i.postimg.cc/vBhHDDN0/64.webp",
+        "Melee": "https://postimg.cc/6TYmvxNS", 
+        "Melee Beyond": "https://postimg.cc/DmjxzQqt",
+        "Project+": "https://postimg.cc/S2ZfJqz8",
+        "Brawl": "https://postimg.cc/4mHQND4c",
+        "Smash 4": "https://postimg.cc/06PYnrYD",
+        "Ultimate": "https://i.postimg.cc/XqnLc1LD/1cqbxgaxnl311.webp",
+        "Complete!": "https://postimg.cc/VSKCFgLy"
     }
     url = era_bgs.get(current_game, era_bgs["Ultimate"])
     st.markdown(f"""
