@@ -11,13 +11,13 @@ def apply_background(bg_type, current_game=None):
     era_bgs = {
         "Smash 64": "https://i.postimg.cc/c4RZJvtW/box-art-nintendo-all-star-dairantou-smash-brothers-portada-japon-nintendo-64.jpg",
         "Smash Remix": "https://i.postimg.cc/vBhHDDN0/64.webp",
-        "Melee": "https://postimg.cc/6TYmvxNS", 
-        "Melee Beyond": "https://postimg.cc/DmjxzQqt",
-        "Project+": "https://postimg.cc/S2ZfJqz8",
-        "Brawl": "https://postimg.cc/4mHQND4c",
-        "Smash 4": "https://postimg.cc/06PYnrYD",
+        "Melee": "https://i.postimg.cc/5NVdDfKx/5c8b996c-9113-4908-b7a1-530f9b99ca43.jpg", 
+        "Melee Beyond": "https://i.postimg.cc/WbjCXXtb/09c7be14-be2c-4412-8fd6-63f48e84eb3d.jpg",
+        "Project+": "https://i.postimg.cc/rsTnZwVh/xboir80eza451.webp",
+        "Brawl": "https://i.postimg.cc/Qx04SDRf/front.jpg",
+        "Smash 4": "https://i.postimg.cc/JhBp1kt6/d6yinaf-1ebd91a9-d4d6-4a21-a28a-ddbece1be63a.webp",
         "Ultimate": "https://i.postimg.cc/XqnLc1LD/1cqbxgaxnl311.webp",
-        "Complete!": "https://postimg.cc/VSKCFgLy"
+        "Complete!": "https://i.postimg.cc/bJh9pV7v/latest.webp"
     }
     url = era_bgs.get(current_game, era_bgs["Ultimate"])
     st.markdown(f"""
@@ -235,6 +235,7 @@ else:
 
 if st.session_state.history:
     with st.expander("📊 Full Match History"): st.table(pd.DataFrame(st.session_state.history))
+
 
 
 
